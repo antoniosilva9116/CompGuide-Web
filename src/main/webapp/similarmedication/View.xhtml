@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SimilarmedicationViewDlg" widgetVar="SimilarmedicationViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSimilarmedicationTitle}">
+            <h:form id="SimilarmedicationViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{similarmedicationController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSimilarmedicationLabel_similarMedicationID}"/>
+                        <h:outputText value="#{similarmedicationController.selected.similarMedicationID}" title="#{bundle.ViewSimilarmedicationTitle_similarMedicationID}"/>
+                        <h:outputText value="#{bundle.ViewSimilarmedicationLabel_equivalenceScore}"/>
+                        <h:outputText value="#{similarmedicationController.selected.equivalenceScore}" title="#{bundle.ViewSimilarmedicationTitle_equivalenceScore}"/>
+                        <h:outputText value="#{bundle.ViewSimilarmedicationLabel_classID}"/>
+                        <h:outputText value="#{similarmedicationController.selected.classID}" title="#{bundle.ViewSimilarmedicationTitle_classID}"/>
+                        <h:outputText value="#{bundle.ViewSimilarmedicationLabel_className}"/>
+                        <h:outputText value="#{similarmedicationController.selected.className}" title="#{bundle.ViewSimilarmedicationTitle_className}"/>
+                        <h:outputText value="#{bundle.ViewSimilarmedicationLabel_classType}"/>
+                        <h:outputText value="#{similarmedicationController.selected.classType}" title="#{bundle.ViewSimilarmedicationTitle_classType}"/>
+                        <h:outputText value="#{bundle.ViewSimilarmedicationLabel_rxcui}"/>
+                        <h:outputText value="#{similarmedicationController.selected.rxcui}" title="#{bundle.ViewSimilarmedicationTitle_rxcui}"/>
+                        <h:outputText value="#{bundle.ViewSimilarmedicationLabel_inclusionScore}"/>
+                        <h:outputText value="#{similarmedicationController.selected.inclusionScore}" title="#{bundle.ViewSimilarmedicationTitle_inclusionScore}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SimilarmedicationViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

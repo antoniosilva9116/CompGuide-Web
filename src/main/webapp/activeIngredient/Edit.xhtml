@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ActiveIngredientEditDlg" widgetVar="ActiveIngredientEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditActiveIngredientTitle}">
+            <h:form id="ActiveIngredientEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{activeIngredientController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditActiveIngredientLabel_activeIngredientID}" for="activeIngredientID" />
+                        <p:inputText id="activeIngredientID" value="#{activeIngredientController.selected.activeIngredientID}" title="#{bundle.EditActiveIngredientTitle_activeIngredientID}" required="true" requiredMessage="#{bundle.EditActiveIngredientRequiredMessage_activeIngredientID}"/>
+                        <p:outputLabel value="#{bundle.EditActiveIngredientLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{activeIngredientController.selected.name}" title="#{bundle.EditActiveIngredientTitle_name}" required="true" requiredMessage="#{bundle.EditActiveIngredientRequiredMessage_name}"/>
+                        <p:outputLabel value="#{bundle.EditActiveIngredientLabel_rxCui}" for="rxCui" />
+                        <p:inputText id="rxCui" value="#{activeIngredientController.selected.rxCui}" title="#{bundle.EditActiveIngredientTitle_rxCui}" />
+                        <p:outputLabel value="#{bundle.EditActiveIngredientLabel_classID}" for="classID" />
+                        <p:inputText id="classID" value="#{activeIngredientController.selected.classID}" title="#{bundle.EditActiveIngredientTitle_classID}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{activeIngredientController.update}" value="#{bundle.Save}" update="display,:ActiveIngredientListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ActiveIngredientEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ActiveIngredientEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

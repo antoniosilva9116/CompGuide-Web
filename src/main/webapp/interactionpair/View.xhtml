@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InteractionpairViewDlg" widgetVar="InteractionpairViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewInteractionpairTitle}">
+            <h:form id="InteractionpairViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{interactionpairController.selected != null}">
+                        <h:outputText value="#{bundle.ViewInteractionpairLabel_interactionPairID}"/>
+                        <h:outputText value="#{interactionpairController.selected.interactionPairID}" title="#{bundle.ViewInteractionpairTitle_interactionPairID}"/>
+                        <h:outputText value="#{bundle.ViewInteractionpairLabel_description}"/>
+                        <h:outputText value="#{interactionpairController.selected.description}" title="#{bundle.ViewInteractionpairTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewInteractionpairLabel_severity}"/>
+                        <h:outputText value="#{interactionpairController.selected.severity}" title="#{bundle.ViewInteractionpairTitle_severity}"/>
+                        <h:outputText value="#{bundle.ViewInteractionpairLabel_medicationIDST}"/>
+                        <h:outputText value="#{interactionpairController.selected.medicationIDST}" title="#{bundle.ViewInteractionpairTitle_medicationIDST}"/>
+                        <h:outputText value="#{bundle.ViewInteractionpairLabel_medicationIDND}"/>
+                        <h:outputText value="#{interactionpairController.selected.medicationIDND}" title="#{bundle.ViewInteractionpairTitle_medicationIDND}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="InteractionpairViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

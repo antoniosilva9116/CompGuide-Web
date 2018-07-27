@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SimilarmedicationCreateDlg" widgetVar="SimilarmedicationCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSimilarmedicationTitle}">
+            <h:form id="SimilarmedicationCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{similarmedicationController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSimilarmedicationLabel_similarMedicationID}" for="similarMedicationID" />
+                        <p:inputText id="similarMedicationID" value="#{similarmedicationController.selected.similarMedicationID}" title="#{bundle.CreateSimilarmedicationTitle_similarMedicationID}" required="true" requiredMessage="#{bundle.CreateSimilarmedicationRequiredMessage_similarMedicationID}"/>
+                        <p:outputLabel value="#{bundle.CreateSimilarmedicationLabel_equivalenceScore}" for="equivalenceScore" />
+                        <p:inputText id="equivalenceScore" value="#{similarmedicationController.selected.equivalenceScore}" title="#{bundle.CreateSimilarmedicationTitle_equivalenceScore}" />
+                        <p:outputLabel value="#{bundle.CreateSimilarmedicationLabel_classID}" for="classID" />
+                        <p:inputText id="classID" value="#{similarmedicationController.selected.classID}" title="#{bundle.CreateSimilarmedicationTitle_classID}" />
+                        <p:outputLabel value="#{bundle.CreateSimilarmedicationLabel_className}" for="className" />
+                        <p:inputText id="className" value="#{similarmedicationController.selected.className}" title="#{bundle.CreateSimilarmedicationTitle_className}" />
+                        <p:outputLabel value="#{bundle.CreateSimilarmedicationLabel_classType}" for="classType" />
+                        <p:inputText id="classType" value="#{similarmedicationController.selected.classType}" title="#{bundle.CreateSimilarmedicationTitle_classType}" />
+                        <p:outputLabel value="#{bundle.CreateSimilarmedicationLabel_rxcui}" for="rxcui" />
+                        <p:inputText id="rxcui" value="#{similarmedicationController.selected.rxcui}" title="#{bundle.CreateSimilarmedicationTitle_rxcui}" />
+                        <p:outputLabel value="#{bundle.CreateSimilarmedicationLabel_inclusionScore}" for="inclusionScore" />
+                        <p:inputText id="inclusionScore" value="#{similarmedicationController.selected.inclusionScore}" title="#{bundle.CreateSimilarmedicationTitle_inclusionScore}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{similarmedicationController.create}" value="#{bundle.Save}" update="display,:SimilarmedicationListForm:datalist,:growl" oncomplete="handleSubmit(args,'SimilarmedicationCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SimilarmedicationCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ActiveIngredientViewDlg" widgetVar="ActiveIngredientViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewActiveIngredientTitle}">
+            <h:form id="ActiveIngredientViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{activeIngredientController.selected != null}">
+                        <h:outputText value="#{bundle.ViewActiveIngredientLabel_activeIngredientID}"/>
+                        <h:outputText value="#{activeIngredientController.selected.activeIngredientID}" title="#{bundle.ViewActiveIngredientTitle_activeIngredientID}"/>
+                        <h:outputText value="#{bundle.ViewActiveIngredientLabel_name}"/>
+                        <h:outputText value="#{activeIngredientController.selected.name}" title="#{bundle.ViewActiveIngredientTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewActiveIngredientLabel_rxCui}"/>
+                        <h:outputText value="#{activeIngredientController.selected.rxCui}" title="#{bundle.ViewActiveIngredientTitle_rxCui}"/>
+                        <h:outputText value="#{bundle.ViewActiveIngredientLabel_classID}"/>
+                        <h:outputText value="#{activeIngredientController.selected.classID}" title="#{bundle.ViewActiveIngredientTitle_classID}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ActiveIngredientViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

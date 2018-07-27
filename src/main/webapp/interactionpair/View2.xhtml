@@ -1,0 +1,46 @@
+<ui:composition     xmlns="http://www.w3.org/1999/xhtml"
+                    xmlns:c="http://java.sun.com/jsp/jstl/core"
+                    xmlns:h="http://xmlns.jcp.org/jsf/html"
+                    xmlns:b="http://bootsfaces.net/ui"
+                    xmlns:f="http://java.sun.com/jsf/core"
+                    xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+                    xmlns:p="http://primefaces.org/ui"
+                    xmlns:pe="http://primefaces.org/ui/extensions">
+    <h:panelGrid id="interactionpairDetails">
+        <h:form id="interactionpairForm">
+            <b:column col-sm="12">
+                <c:forEach items='#{selectedMedications}' var="medicationTask" varStatus="status">
+                    <c:forEach items="#{medicationTask.activeIngredientList}" var="activeIngredient" varStatus="status">
+                        <c:forEach items="#{activeIngredient.interactionPairList1}" var="interactionpair" varStatus="status">
+                            <c:if test="#{interactionpair.description ne 'N/A'}">
+                                <p>
+                                    <h:outputText value="The medication "/> <h:outputText value="#{interactionpair.activeIngredientSTID.name}" />  interacts with <h:outputText value="#{interactionpair.activeIngredientNDID.name}." />
+                                    <h:outputText value=" The ingredient #{interactionpair.activeIngredientNDID.name} is being applied in the task " />
+                                    <c:forEach items="#{interactionpair.activeIngredientNDID.medicationTaskList}" var="medicationTaskApplied" varStatus="status">
+                                        <c:if test="#{medicationTaskApplied.scheduleTaskID.completed == false}">                          
+                                            <c:if test="#{!status.last}">
+                                                <strong><h:outputText value="#{medicationTaskApplied.scheduleTaskID.taskIdentifier}," /></strong>
+                                            </c:if>
+                                            <c:if test="#{status.last}">
+                                                <strong><h:outputText value="#{medicationTaskApplied.scheduleTaskID.taskIdentifier}." /></strong>
+                                            </c:if>
+                                        </c:if>
+                                    </c:forEach>
+
+                                </p>
+                                <p>
+                                    <strong><h:outputText value="Severity: "/></strong>  <b:label text="#{interactionpair.severity}" severity="warning"/>
+                                </p>
+                                <p>
+                                    <strong><h:outputText value="Description: "/></strong>  <h:outputText value="#{interactionpair.description}"/> 
+                                </p>   
+                                <hr />
+                            </c:if>
+                        </c:forEach>
+                    </c:forEach>
+                </c:forEach>
+            </b:column>
+        </h:form>
+
+    </h:panelGrid>
+</ui:composition>
