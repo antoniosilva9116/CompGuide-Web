@@ -1,0 +1,35 @@
+<ui:composition     xmlns="http://www.w3.org/1999/xhtml"
+                    xmlns:c="http://java.sun.com/jsp/jstl/core"
+                    xmlns:h="http://xmlns.jcp.org/jsf/html"
+                    xmlns:b="http://bootsfaces.net/ui"
+                    xmlns:f="http://java.sun.com/jsf/core"
+                    xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+                    xmlns:p="http://primefaces.org/ui"
+                    xmlns:pe="http://primefaces.org/ui/extensions">
+    <h:panelGrid id="similarmedicationDetails">
+        <h:form id="similarmedicationForm">
+            <b:column col-sm="12"> 
+                <c:forEach items='#{selectedMedications}' var="medicationTask" varStatus="status">
+                    <c:forEach items="#{medicationTask.activeIngredientList}" var="activeIngredient" varStatus="status">
+                        <c:forEach items="#{activeIngredient.similarMedicationList}" var="similarmedication" varStatus="status">
+                            <p>
+                                <strong><h:outputText value="Medication "/> <h:outputText value="#{similarmedication.className}" /></strong><h:outputText value=" in  #{similarmedication.drugSource}"/>  
+                                <c:if test="#{not empty similarmedication.rela}">
+
+                                    <h:outputText value=" (#{similarmedication.rela})" />
+                                </c:if>
+                                <h:outputText value=" - " />
+                                <h:outputText value="#{similarmedication.equivalenceScore}" >
+                                    <f:convertNumber groupingUsed="true" maxFractionDigits="2" />
+                                </h:outputText>
+                            </p>
+
+                            <hr />
+                        </c:forEach>
+                    </c:forEach>
+                </c:forEach>
+            </b:column>
+        </h:form>
+
+    </h:panelGrid>
+</ui:composition>

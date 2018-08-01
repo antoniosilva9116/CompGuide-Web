@@ -42,15 +42,13 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "ActiveIngredient.findByClassID", query = "SELECT a FROM ActiveIngredient a WHERE a.classID = :classID")})
 public class ActiveIngredient implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+ private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ActiveIngredientID")
     private Integer activeIngredientID;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
+    @Size(max = 255)
     @Column(name = "Name")
     private String name;
     @Size(max = 255)
@@ -59,6 +57,18 @@ public class ActiveIngredient implements Serializable {
     @Size(max = 255)
     @Column(name = "ClassID")
     private String classID;
+    @Size(max = 60)
+    @Column(name = "DrugSource")
+    private String drugSource;
+    @Size(max = 60)
+    @Column(name = "RelaSource")
+    private String relaSource;
+    @Size(max = 60)
+    @Column(name = "Rela")
+    private String rela;
+    @Size(max = 60)
+    @Column(name = "RelaName")
+    private String relaName;
     @JoinTable(name = "medicationtaskactiveingredient", joinColumns = {
         @JoinColumn(name = "ActiveIngredientActiveIngredientID", referencedColumnName = "ActiveIngredientID")}, inverseJoinColumns = {
         @JoinColumn(name = "MedicationTaskMedicationTaskID", referencedColumnName = "MedicationTaskID")})
@@ -73,24 +83,6 @@ public class ActiveIngredient implements Serializable {
     private List<InteractionPair> interactionPairList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "activeIngredientSTID", fetch = FetchType.EAGER)
     private List<InteractionPair> interactionPairList1;
-    @Size(max = 60)
-    @Column(name = "DrugSource")
-    private String drugSource;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 60)
-    @Column(name = "RelaSource")
-    private String relaSource;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 60)
-    @Column(name = "Rela")
-    private String rela;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 60)
-    @Column(name = "RelaName")
-    private String relaName;
 
     public ActiveIngredient() {
     }

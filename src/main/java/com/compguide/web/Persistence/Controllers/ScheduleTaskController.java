@@ -198,7 +198,8 @@ public class ScheduleTaskController implements Serializable {
 
                 if (eventsNotificationLocal.isEmpty()) { // nao existem eventos e preciso criar
                     try {
-
+                        System.out.println("======================================================================================s");
+                        System.out.println("Acquiring events");
                         eventsSchedule = processGuidelineTemporalPattern(
                                 task,
                                 temporalElement);
@@ -272,7 +273,7 @@ public class ScheduleTaskController implements Serializable {
 
         findRecommendationInteractions(items);
         findSimilarMedication(items);
-
+        
     }
 
     public void taskStopCondition() {

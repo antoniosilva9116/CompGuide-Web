@@ -213,7 +213,7 @@
                                                 </p>
 
                                                 <p>
-                                                    <ui:include src="/interactionpair/View2.xhtml" >
+                                                    <ui:include src="/interactionpair/interactionpair.xhtml" >
                                                         <ui:param name="selectedMedications" value="#{scheduleTaskController.medicationTasks}"/>
                                                         <ui:param name="selectedTask" value="#{scheduleTaskController.selected}" />
                                                     </ui:include>
@@ -239,7 +239,9 @@
                                                 </p>
 
                                                 <p>
-                                                    
+                                                    <ui:include src="/similarmedication/similarmedication.xhtml" >
+                                                        <ui:param name="selectedMedications" value="#{scheduleTaskController.medicationTasks}"/>
+                                                    </ui:include>
                                                 </p>
                                                 <p/>
                                             </div>

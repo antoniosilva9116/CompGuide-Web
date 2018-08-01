@@ -7,15 +7,19 @@ package com.compguide.web.Persistence.SessionBeans;
 
 import com.compguide.web.Persistence.Entities.ActiveIngredient;
 import com.compguide.web.Persistence.Entities.InteractionPair;
-import com.compguide.web.Persistence.Entities.MedicationTask;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.validation.ConstraintViolation;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+import static javafx.scene.input.KeyCode.T;
+import static org.json.XMLTokener.entity;
 
 /**
  *
@@ -66,14 +70,20 @@ public class InteractionpairFacade extends AbstractFacade<InteractionPair> {
 
     public InteractionPair findByActiveIngredientSTANDActiveIngredientND(ActiveIngredient activeIngredientST, ActiveIngredient activeIngredientND) {
         InteractionPair interactionPair = null;
+        System.out.println("activeIngredientSTID = " + activeIngredientST.getActiveIngredientID() + "| activeIngredientNDID = " + activeIngredientND.getActiveIngredientID());
+
         try {
             Query query = em.createNamedQuery("InteractionPair.findByActiveIngredientSTIDANDActiveIngredientNDID", InteractionPair.class);
             query.setParameter("activeIngredientSTID", activeIngredientST);
             query.setParameter("activeIngredientNDID", activeIngredientND);
 
             interactionPair = (InteractionPair) query.getSingleResult();
-        } catch (javax.ejb.EJBException | javax.persistence.NoResultException ex) {
-            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+        } catch (javax.ejb.EJBException | javax.persistence.NoResultException | javax.validation.ConstraintViolationException ex) {
+            System.out.println("========================================================================================================================");
+
+            System.out.println(((javax.validation.ConstraintViolationException) ex).getConstraintViolations());
+
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ((javax.validation.ConstraintViolationException) ex).getConstraintViolations());
         }
 
         return interactionPair;
