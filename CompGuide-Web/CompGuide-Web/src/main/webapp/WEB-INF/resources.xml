@@ -8,7 +8,7 @@
     </Resource>-->
     <Resource id="jdbc/compguide" type="javax.sql.DataSource">#Tue May 24 11:17:22 BST 2016
         jdbcDriver=com.mysql.jdbc.Driver
-        password=123
+        password=
         userName=root
         jdbcUrl=jdbc\:mysql\://localhost\:3306/compguidedb
     </Resource>

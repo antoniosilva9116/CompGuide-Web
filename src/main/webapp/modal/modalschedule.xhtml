@@ -145,6 +145,7 @@
                                                 </a>
                                             </h4>
                                         </div>
+
                                         <div id="collapseOtherTasks" class="panel-collapse collapse">
                                             <div class="panel-body">
                                                 <p>
@@ -153,27 +154,12 @@
                                                 </p>
 
                                                 <p>
-                                                    <p:outputPanel autoUpdate="true">
-                                                        <c:if test="#{scheduleTaskController.isDecision()}">
-                                                            <ui:include src="/task/decision.xhtml" />
-                                                        </c:if>
-                                                        <c:if test="#{scheduleTaskController.isAction()}">
-                                                            <ui:include src="/task/action.xhtml"/>
-                                                        </c:if>
-                                                        <c:if test="#{scheduleTaskController.isPlan()}">
-                                                            <ui:include src="/task/plan.xhtml" />
-                                                        </c:if>
-                                                        <c:if test="#{scheduleTaskController.qtd}">
-                                                            <ui:include src="/task/question.xhtml" />
-                                                        </c:if>
-                                                        <c:if test="#{scheduleTaskController.isEnd()}">
-                                                            <ui:include src="/task/end.xhtml"/>
-                                                        </c:if>
-                                                    </p:outputPanel>
+
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="panel">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
@@ -249,6 +235,21 @@
                                     </div>
 
                                 </div>
+                                <c:if test="#{scheduleTaskController.isDecision()}">
+                                    <ui:include src="/task/decision.xhtml" />
+                                </c:if>
+                                <c:if test="#{scheduleTaskController.isAction()}">
+                                    <ui:include src="/task/action.xhtml"/>
+                                </c:if>
+                                <c:if test="#{scheduleTaskController.isPlan()}">
+                                    <ui:include src="/task/plan.xhtml" />
+                                </c:if>
+                                <c:if test="#{scheduleTaskController.qtd}">
+                                    <ui:include src="/task/question.xhtml" />
+                                </c:if>
+                                <c:if test="#{scheduleTaskController.isEnd()}">
+                                    <ui:include src="/task/end.xhtml"/>
+                                </c:if>
                             </div>
                         </b:column>
                         <b:column col-md="5">

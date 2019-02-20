@@ -198,8 +198,6 @@ public class ScheduleTaskController implements Serializable {
 
                 if (eventsNotificationLocal.isEmpty()) { // nao existem eventos e preciso criar
                     try {
-                        System.out.println("======================================================================================s");
-                        System.out.println("Acquiring events");
                         eventsSchedule = processGuidelineTemporalPattern(
                                 task,
                                 temporalElement);
@@ -241,8 +239,6 @@ public class ScheduleTaskController implements Serializable {
                             getEventFacade().create(eventNotification); //cria o evento
                         }
 
-                        System.out.println(eventNotification.toString()); // apenas para verificar se o id foi atualizado ao gravar na BD
-
                         event.setData(eventNotification.getEventID());
                         eventModel.addEvent(event);    //o evento e adicionado na lista
 
@@ -273,7 +269,7 @@ public class ScheduleTaskController implements Serializable {
 
         findRecommendationInteractions(items);
         findSimilarMedication(items);
-        
+
     }
 
     public void taskStopCondition() {
@@ -344,7 +340,6 @@ public class ScheduleTaskController implements Serializable {
     }
 
     public void refresh() {
-        System.out.println("====================REFRESH MODEL========================");
 
         boolean refresh = false;
 
@@ -356,7 +351,6 @@ public class ScheduleTaskController implements Serializable {
         }
 
         if (refresh) {
-            System.out.println("================REFRESH COMPLETED===========================");
 
             FacesContext.getCurrentInstance().
                     getExternalContext().getSessionMap().put("refreshModel", false);
@@ -994,6 +988,7 @@ public class ScheduleTaskController implements Serializable {
                 selectedEvent = eventSchedule;
                 getSelectedDate().setDate(selectedEvent.getEndDate());
                 processedTask = callServiceLastTask(selected.getGuideExecID());
+                System.out.println(processedTask.toJson());
                 FacesContext.getCurrentInstance().
                         getExternalContext().getSessionMap().put("guideexec", selected.getGuideExecID());
 
@@ -1192,7 +1187,7 @@ public class ScheduleTaskController implements Serializable {
             ((MedicationTaskAdapter) medicationTaskAdapter).passObject(selected);
             List<MedicationTask> medicationTasks = (List<MedicationTask>) ((MedicationTaskAdapter) medicationTaskAdapter.
                     fetchMedicationTasksFromClinicalTask(processedTask.getTasks().get(i))).getObject();
-            
+
             if (!scheduleTasks.contains(selected)) {
                 scheduleTasks.add(selected);
             }
@@ -1231,7 +1226,9 @@ public class ScheduleTaskController implements Serializable {
     }
 
     public boolean containsClass(ProcessedTask processedTask, String nameClass) {
+        System.out.println("Tamanho " + processedTask.getTasks().size());
         for (ClinicalTask task : processedTask.getTasks()) {
+            System.out.println(task.getTaskType());
             if (Objects.equals(task.getTaskType(), nameClass)) {
                 return true;
             }
@@ -1282,6 +1279,8 @@ public class ScheduleTaskController implements Serializable {
         ProcessedTask procTask = new ProcessedTask();
 
         procTask = ServiceRequest.requestGetLastTask(header, guideExecID.getIdguideexec().toString());
+        
+        System.out.println(procTask.toJson());
         return procTask;
     }
 
@@ -1398,8 +1397,8 @@ public class ScheduleTaskController implements Serializable {
     }
 
     public ProcessedTask getProcessedTask() {
-        processedTask = (ProcessedTask) FacesContext.getCurrentInstance().
-                getExternalContext().getSessionMap().get("processedTask");
+//        processedTask = (ProcessedTask) FacesContext.getCurrentInstance().
+//                getExternalContext().getSessionMap().get("processedTask");
 
         if (processedTask == null) {
             processedTask = new ProcessedTask();
@@ -1431,6 +1430,7 @@ public class ScheduleTaskController implements Serializable {
                 return true;
             }
         }
+        System.out.println(processedTask.toJson());
 
         return false;
     }

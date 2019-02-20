@@ -128,6 +128,7 @@ public class ScheduleTaskController implements Serializable {
             List<ScheduleTask> list = getFacade().findByGuideExecID(guideExec);
             // a lista de tarefas em ProcessedTask ainda nao foi inserida na BD
             if (list.isEmpty()) {
+                System.out.println("ENTREI");
                 processedTask = callServiceLastTask(guideExec);
 
                 list = storeProcessedTask(guideExec, processedTask);
@@ -262,7 +263,6 @@ public class ScheduleTaskController implements Serializable {
     }
 
     public void refresh() {
-        System.out.println("====================REFRESH MODEL========================");
 
         boolean refresh = false;
 
@@ -274,7 +274,6 @@ public class ScheduleTaskController implements Serializable {
         }
 
         if (refresh) {
-            System.out.println("================REFRESH COMPLETED===========================");
 
             FacesContext.getCurrentInstance().
                     getExternalContext().getSessionMap().put("refreshModel", false);
@@ -645,7 +644,6 @@ public class ScheduleTaskController implements Serializable {
     }
 
     public void taskExecutionSuccess() {
-        System.out.println("ENTREI");
         String summary = "Outcome";
         String message = "The execution of the task " + selectedOutcome.getScheduleTaskID().getTaskIdentifier()
                 + " wich started at " + selectedOutcome.getScheduleTaskID().getStartDate().toString() + " and finished at"
@@ -669,7 +667,6 @@ public class ScheduleTaskController implements Serializable {
     }
 
     public void taskExecutionFail() {
-        System.out.println("ENTREI");
         String summary = "Outcome";
         String message = "The execution of the task " + selectedOutcome.getScheduleTaskID().getTaskIdentifier()
                 + " wich started at " + selectedOutcome.getScheduleTaskID().getStartDate().toString() + " and finished at "
@@ -864,7 +861,6 @@ public class ScheduleTaskController implements Serializable {
     public void checkTask() {
         List<ScheduleEvent> eventList = eventModel.getEvents();
 
-        System.out.println("========================CHECK TASK==============================");
 
         for (ScheduleEvent event : eventList) {
             if (Objects.equals(selectedEvent.getEventID(), event.getData())) {
@@ -925,7 +921,6 @@ public class ScheduleTaskController implements Serializable {
         update();
 
         init();
-        System.out.println("=====================================================");
 
     }
 
@@ -1111,7 +1106,7 @@ public class ScheduleTaskController implements Serializable {
 
     public ProcessedTask callServiceLastTask(GuideExec guideExecID) {
         Header header = (Header) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("header");
-
+        System.out.println("EnTREI callServiceLastTask");
         ProcessedTask procTask = new ProcessedTask();
         procTask = ServiceRequest.requestGetLastTask(header, guideExecID.getIdguideexec().toString());
         return procTask;
