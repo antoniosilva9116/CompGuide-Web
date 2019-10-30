@@ -46,9 +46,9 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.apache.http.Header;
-import org.primefaces.extensions.event.timeline.TimelineSelectEvent;
-import org.primefaces.extensions.model.timeline.TimelineEvent;
-import org.primefaces.extensions.model.timeline.TimelineModel;
+import org.primefaces.event.timeline.TimelineSelectEvent;
+import org.primefaces.model.timeline.TimelineEvent;
+import org.primefaces.model.timeline.TimelineModel;
 
 /**
  *

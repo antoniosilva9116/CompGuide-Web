@@ -229,12 +229,17 @@
                                                         <ui:param name="selectedMedications" value="#{scheduleTaskController.medicationTasks}"/>
                                                     </ui:include>
                                                 </p>
-                                                <p/>
+                                                <p>
+                                                    <b:column class="">
+                                                        <b:button style="margin-left: 78px" value="Resolve Interaction" look="info" onclick="$('#mcda').modal('show');
+                                                                $('.modalPseudoClass').modal('hide');"></b:button>
+                                                    </b:column>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
+
                                 <c:if test="#{scheduleTaskController.isDecision()}">
                                     <ui:include src="/task/decision.xhtml" />
                                 </c:if>

@@ -7,6 +7,10 @@
         <pattern value="/" />
         <view-id value="/faces/index.xhtml" />
     </url-mapping>
+    <url-mapping id="mcda_create">
+        <pattern value="/mcda/create" />
+        <view-id value="/faces/mcda/Create.xhtml" />
+    </url-mapping> 
     <url-mapping id="contact">
         <pattern value="/contact" />
         <view-id value="/faces/contact.xhtml" />

@@ -412,25 +412,25 @@
     });
 
     /*********************  $Isotope  **********************/
-    $(window).load(function () {
-        if ($('.gallery-grid').length) {
-            // cache container
-            var $container = $('.gallery-grid');
-
-            // initialize isotope
-            $container.isotope({});
-
-            // filter items when filter link is clicked
-            $('.filters a').click(function () {
-                $('.filters a').removeClass('active');
-                $(this).addClass('active');
-
-                var selector = $(this).attr('data-filter');
-                $container.isotope({filter: selector});
-                return false;
-            });
-        }
-    });
+//    $(window).load(function () {
+//        if ($('.gallery-grid').length) {
+//            // cache container
+//            var $container = $('.gallery-grid');
+//
+//            // initialize isotope
+//            $container.isotope({});
+//
+//            // filter items when filter link is clicked
+//            $('.filters a').click(function () {
+//                $('.filters a').removeClass('active');
+//                $(this).addClass('active');
+//
+//                var selector = $(this).attr('data-filter');
+//                $container.isotope({filter: selector});
+//                return false;
+//            });
+//        }
+//    });
     /**************************  $Send Forms  ******************************/
     $("#newsletter, #contact, #request").submit(function () {
         var elem = $(this);

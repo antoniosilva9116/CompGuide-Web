@@ -1,0 +1,475 @@
+
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:c="http://java.sun.com/jsp/jstl/core"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:f="http://java.sun.com/jsf/core"
+             xmlns:b="http://bootsfaces.net/ui"
+             xmlns:p="http://primefaces.org/ui">
+    <b:modal title="Multi Criteria Decision" id="mcda" style="overflow: scroll;" size="modal-lg">
+        <style type="text/css">
+
+            #mcda_form_choose_pane{
+                padding-left: 20px;
+            }            
+            .choose_border{
+                border-color: red !important;
+            }
+            .border{
+                border: 1px solid #ccc!important;
+                border-radius: 16px;
+                padding: 0.50em 16px;
+            }
+
+            #list_alter {
+                list-style-type: none;
+                list-style: none;
+            }
+            #tb{
+                overflow: scroll;
+            }
+        </style>
+
+        
+        
+
+        <h:form id="mcda_form">
+
+            <b:tabView  id="tb" contentStyle="border-right: 1px solid #ddd;border-left: 1px solid #ddd;border-bottom: 1px solid #ddd;padding:10px" active-index="#{tab.activeIndex}">
+
+
+
+                <b:tab title="Alternatives" id="altern">
+
+                    <div class="sidebar sidebar-right">  
+                        <div style="padding-left:59px; width: 526px;padding-top: 26px;" class="panel-group" id="accordion-work2">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion-work" href="#collapseAlternative1" class="collapsed">
+                                            <i class="fa fa-plus-square"></i>
+                                            <h:outputText value="Only Apply Insulin" /> 
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseAlternative1" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p>
+                                            <strong>
+                                                Only apply insulin
+                                            </strong>
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion-work" href="#collapseAlternative2" class="collapsed">
+                                            <i class="fa fa-plus-square"></i>
+                                            <h:outputText value="Only Apply Histrelin" /> 
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseAlternative2" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p>
+                                            <strong>
+                                               Only aplly histrelin
+                                            </strong>
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion-work" href="#collapseAlternative3" class="collapsed">
+                                            <i class="fa fa-plus-square"></i>
+                                            <h:outputText value="Apply Alternative 1 and 2" /> 
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseAlternative3" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p>
+                                            <strong>
+                                                Apply alternative 1 and alternite 2 simultaneously
+                                            </strong>
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <p:commandButton
+                        style="margin-left: 785px;"
+                        class="btn btn-default"
+                        value="Next" id="bt1" onclick="   $('[id$=range] a').attr('data-toggle', 'tab');
+                            $('[id$=range]').removeClass('disabled');
+                            $('[id$=range] a').trigger('click');
+                        " />
+
+
+
+                </b:tab>
+                <b:tab class="disabled" title="Range of Criteria" id="range">  
+
+
+
+                    <div id="collapsePrice" class="panel-collapse collapse in" >
+                        <div class="panel-body">
+                            <div class="slider-range" id="slider-criteria" >
+                                <h6>Criteria A - Severity of disease for which drugs advised</h6>
+                                <p>Choose range of criteria A:
+                                    <span id="mina" class="span_range min">30</span> -
+                                    <span id="maxa" class="span_range max">80</span>
+                                </p>
+
+                                <input type="text" class="input_range min sr-only" value="0"/>
+                                <input type="text" class="input_range max sr-only" value="100"/>
+
+                                <h:inputHidden id="amin" value="#{mcda.crta_min}"/>
+                                <h:inputHidden id="amax" value="#{mcda.crta_max}"/>
+
+                                <div id="criterioA" class="slider" style="width: 219px;">
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="slider-range" id="slider-criteria" >
+                                <h6>Criteira B - Adverse drug-drug interactions</h6>
+                                <p>Choose range of criteria B:
+                                    <span id="minb" class="span_range min">30</span> -
+                                    <span id="maxb" class="span_range max">80</span>    
+                                </p>
+
+                                <input type="text" class="input_range min sr-only" value="0"/>
+                                <input type="text" class="input_range max sr-only" value="100"/>
+
+                                <h:inputHidden id="bmin" value="#{mcda.crtb_min}"/>
+                                <h:inputHidden id="bmax" value="#{mcda.crtb_max}"/>
+
+                                <div class="slider" style="width: 219px;">
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="slider-range" id="slider-criteria" >
+                                <h6>Criteria C - Expected outocomes for the drug application</h6>
+                                <p>Choose range of criteria C: 
+                                    <span id="minc" class="span_range min">30</span> -
+                                    <span id="maxc" class="span_range max">80</span>
+                                </p>
+
+                                <input type="text" class="input_range min sr-only" value="0"/>
+                                <input type="text" class="input_range max sr-only" value="100"/>
+
+                                <h:inputHidden id="cmin" value="#{mcda.crtc_min}"/>
+                                <h:inputHidden id="cmax" value="#{mcda.crtc_max}"/>
+
+                                <div class="slider" style="width: 219px;">
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <p:commandButton
+                        style="margin-left: 785px;"
+                        class="btn btn-default"
+                        ajax="true"
+                        action="#{mcda.daRange(mcda.crta_min,mcda.crta_max,mcda.crtb_min,mcda.crtb_max,mcda.crtc_min,mcda.crtc_max)}"
+                        value="Next" id="bt2"
+                        oncomplete=" $('[id$=choose] a').attr('data-toggle','tab');
+                        $('[id$=choose]').removeClass('disabled');
+                        $('[id$=choose] a').trigger('click');
+                        validate_from_range();" 
+                        onclick="mostra();"
+                        >
+                        <f:ajax render="mcda_form:mother"></f:ajax>
+                        <f:ajax render="mcda_form:mother1"></f:ajax>
+                        <f:ajax render="mcda_form:mother2"></f:ajax>
+
+
+
+                    </p:commandButton>
+
+
+                </b:tab>
+
+
+
+                <b:tab onclick="validate_from_range();" id="choose" class="disabled" title="Choose Value">
+
+                    <h:panelGrid style="margin-bottom:40px;" id="mother" columns="1">
+
+                        <h6>Criteria A - Severity of disease for which drugs advised</h6>
+                        <p id="crta_choose">Choose value between:
+                            <span id="crta_choose_min">#{mcda.crta_min}</span> and 
+                            <span id="crta_choose_max">#{mcda.crta_max}</span>
+                        </p>    
+
+                        <h:outputLabel id="criteria_a1" for="criteria_a" value="Alternative 1" />
+                        <div class="form-group">
+                            <p:inputText style="width:330px;"  id="choose_ca1" label="Choose Value" value="#{mcda.valuecrt_a[0]}" onchange="validation_choose_crta_1()"/>
+                        </div>
+
+
+                        <h:outputLabel id="criteria_a2" for="criteria_a" value="Alternative 2" />
+                        <div class="form-group">
+                            <p:inputText style="width:330px;"  id="choose_ca2" label="Choose Value" value="#{mcda.valuecrt_a[1]}" onchange="validation_choose_crta_2()"/>
+                        </div>
+
+
+                        <h:outputLabel id="criteria_a3" for="criteria_a" value="Alternative 3" />
+                        <div class="form-group">
+                            <p:inputText style="width:330px;"  id="choose_ca3" label="Choose Value" value="#{mcda.valuecrt_a[2]}" onchange="validation_choose_crta_3()"/>  
+                        </div>
+
+                    </h:panelGrid>
+
+                    <h:panelGrid style="margin-bottom:40px;" id="mother1" columns="1">
+
+
+                        <h6>Criteira B - Adverse drug-drug interactions</h6>
+                        <p id="crtb_choose">Choose value between #{mcda.crtb_min} and #{mcda.crtb_max}</p>
+
+                        <h:outputLabel id="criteria_b1" for="criteria_a" value="Alternative 1" />
+                        <div class="form-group">
+                            <p:inputText style="width:330px;"  id="choose_cb1" label="Choose Value" value="#{mcda.valuecrt_b[0]}" onchange="validation_choose_crtb_1()"/>
+                        </div>
+
+                        <h:outputLabel id="criteria_b2" for="criteria_a" value="Alternative 2" />
+                        <div class="form-group">
+                            <p:inputText style="width:330px;"  id="choose_cb2" label="Choose Value" value="#{mcda.valuecrt_b[1]}" onchange="validation_choose_crtb_2()"/>
+                        </div>
+
+                        <h:outputLabel id="criteria_b3" for="criteria_a" value="Alternative 3" />
+                        <div class="form-group">
+                            <p:inputText style="width:330px;" id="choose_cb3" label="Choose Value" value="#{mcda.valuecrt_b[2]}" onchange="validation_choose_crtb_3()"/>
+                        </div>
+
+                    </h:panelGrid>
+
+                    <h:panelGrid id="mother2" columns="1">
+
+                        <h6>Criteria C - Expected outocomes for the drug application</h6>
+                        <p id="crtc_choose">Choose value between #{mcda.crtc_min} and #{mcda.crtc_max}</p>
+
+                        <h:outputLabel id="criteria_c1" for="criteria_a" value="Alternative 1" />
+                        <div class="form-group">
+                            <p:inputText style="width:330px;" id="choose_cc1" label="Choose Value" value="#{mcda.valuecrt_c[0]}" onchange="validation_choose_crtc_1()"/>
+                        </div>
+
+                        <h:outputLabel id="criteria_c2" for="criteria_a" value="Alternative 2" />
+                        <div class="form-group">
+                            <p:inputText style="width:330px;" id="choose_cc2" label="Choose Value" value="#{mcda.valuecrt_c[1]}" onchange="validation_choose_crtc_2()"/>
+                        </div>
+
+                        <h:outputLabel id="criteria_c3" for="criteria_a" value="Alternative 3" />
+                        <div class="form-group">
+                            <p:inputText style="width:330px;" id="choose_cc3" label="Choose Value" value="#{mcda.valuecrt_c[2]}" onchange="validation_choose_crtc_3()"/>
+                        </div>
+
+                    </h:panelGrid>
+
+                    <p:commandButton
+                        style="margin-left: 750px;"
+                        class="btn btn-default"
+                        ajax="true"
+                        value="Next" 
+                        id="bt3" 
+                        action="#{mcda.perfomance_matrix(mcda.valuecrt_a[0], mcda.valuecrt_a[1], mcda.valuecrt_a[2],mcda.valuecrt_b[0],mcda.valuecrt_b[1],mcda.valuecrt_b[2],mcda.valuecrt_c[0],mcda.valuecrt_c[1],mcda.valuecrt_c[2])}" 
+                        oncomplete=" 
+                        if(flag == 0){
+                        $('[id$=perf_matrix] a').attr('data-toggle','tab');
+                        $('[id$=perf_matrix]').removeClass('disabled');
+                        $('[id$=perf_matrix] a').trigger('click');
+                        }else{
+                        $('[id$=choose] a').attr('data-toggle','tab');
+                        $('[id$=choose]').removeClass('disabled');
+                        $('[id$=choose] a').trigger('click');
+                        validate_from_range();
+
+                        }">
+                        <f:ajax render=":mcda_form:perf"></f:ajax>
+                    </p:commandButton>
+
+                    <p:dialog header="Dialog" widgetVar="dlg" dynamic="true">
+                        <h:outputText value="The values ​​entered are not within the defined ranges." />
+                    </p:dialog>
+
+                </b:tab>
+                <b:tab class="disabled"  title="Perfomance Matrix" id="perf_matrix">
+
+                    <p:dataTable id="perf" var="va" value="#{mcda.perf_matrix}">
+
+                        <p:column>
+                            <!-- column header -->
+                            <f:facet name="header">Criteria</f:facet>
+                            <!-- row record -->
+                            <h:outputText value="#{va.name}"></h:outputText>
+                        </p:column>
+                        <p:column>
+                            <!-- column header -->
+                            <f:facet name="header">Alternative 1</f:facet>
+                            <!-- row record -->
+                            <h:outputText value="#{va.value_alt1}"></h:outputText>
+
+                        </p:column>
+                        <p:column>
+                            <!-- column header -->
+                            <f:facet name="header">Alternative 2</f:facet>
+                            <!-- row record -->
+                            <h:outputText value="#{va.value_alt2}"></h:outputText>
+                        </p:column>
+                        <p:column>
+                            <!-- column header -->
+                            <f:facet name="header">Alternative 3</f:facet>
+                            <!-- row record -->
+                            <h:outputText value="#{va.value_alt3}"></h:outputText>
+                        </p:column>
+
+                    </p:dataTable>
+
+                    <p:commandButton
+                        style="margin-left: 785px;"
+                        class="btn btn-default"
+                        value="Next" id="bt4" onclick=" $('[id$=pesos] a').attr('data-toggle', 'tab');
+                            $('[id$=pesos]').removeClass('disabled');
+                            $('[id$=pesos] a').trigger('click');" />
+
+                </b:tab>
+
+                <b:tab class="disabled"  id="pesos" title="Define Weights">
+
+
+                    <b:panelGrid columns="1">   
+                        <p>Choose the importance of Criterias</p>
+
+                        <h:outputLabel for="criteria_a" value="Choose the importance of Criteria A between 0 and 100" />
+                        <p:inputText style="width:330px;" label="Choose Value" value="#{mcda.pesoCrtA}"/>
+
+                        <h:outputLabel for="criteria_a" value="Choose the importance of Criteria B between 0 and 100" />
+                        <p:inputText style="width:330px;" label="Choose Value" value="#{mcda.pesoCrtB}"/>
+
+                        <h:outputLabel for="criteria_a" value="Choose the importance of Criteria C between 0 and 100" />
+                        <p:inputText style="width:330px;" label="Choose Value" value="#{mcda.pesoCrtC}"/>
+
+                    </b:panelGrid>
+
+                    <p:commandButton
+                        style="margin-left: 785px;"
+                        class="btn btn-default"
+                        value="Next" id="bt5" action="#{mcda.finalScores(mcda.pesoCrtA,mcda.pesoCrtB,mcda.pesoCrtC)}" oncomplete=" $('[id$=final] a').attr('data-toggle','tab');
+                        $('[id$=final]').removeClass('disabled');
+                        $('[id$=final] a').trigger('click');"> 
+                        <f:ajax render=":mcda_form:final1"></f:ajax>
+                        <f:ajax render=":mcda_form:final2"></f:ajax>
+                    </p:commandButton>
+
+                </b:tab>
+
+                <b:tab class="disabled" id="final" title="Final Score">
+
+
+
+                    <p>Final Score:</p>
+
+
+                    <p:dataTable id="final1" var="va" value="#{mcda.perf_matrix}">
+                        <p:column>
+                            <!-- column header -->
+                            <f:facet name="header">Criteria</f:facet>
+                            <!-- row record -->
+                            <h:outputText value="#{va.name}"></h:outputText>
+                        </p:column>
+                        <p:column>
+                            <!-- column header -->
+                            <f:facet name="header">Scores Alt 1</f:facet>
+                            <!-- row record -->
+                            <h:outputText value="#{va.score_alt1}"></h:outputText>
+
+                        </p:column>
+                        <p:column>
+                            <!-- column header -->
+                            <f:facet name="header">Scores Alt 2</f:facet>
+                            <!-- row record -->
+                            <h:outputText value="#{va.score_alt2}"></h:outputText>
+                        </p:column>
+                        <p:column>
+                            <!-- column header -->
+                            <f:facet name="header">Scores Alt 3</f:facet>
+                            <!-- row record -->
+                            <h:outputText value="#{va.score_alt3}"></h:outputText>
+                        </p:column>
+                        <p:column>
+                            <!-- column header -->
+                            <f:facet name="header">Weights</f:facet>
+                            <!-- row record -->
+                            <h:outputText value="#{va.weight}"></h:outputText>
+                        </p:column>
+                        <p:column>
+                            <!-- column header -->
+                            <f:facet name="header">Alt 1</f:facet>
+                            <!-- row record -->
+                            <h:outputText value="#{va.resultAlt1}"></h:outputText>
+                        </p:column>
+                        <p:column>
+                            <!-- column header -->
+                            <f:facet name="header">Alt2</f:facet>
+                            <!-- row record -->
+                            <h:outputText value="#{va.resultAlt2}"></h:outputText>
+                        </p:column>
+                        <p:column>
+                            <!-- column header -->
+                            <f:facet name="header">Alt 3</f:facet>
+                            <!-- row record -->
+                            <h:outputText value="#{va.resultAlt3}"></h:outputText>
+                        </p:column>
+
+                    </p:dataTable>
+
+                    <p>Total Score:</p>
+
+                    <p:dataTable id="final2"  var="va" value="#{mcda}">
+                        <p:column>
+                            <f:facet name="header"></f:facet>
+                            <h:outputText value="Total Value"></h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Alt 1</f:facet>
+                                #{mcda.totalAlt1}
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Alt 2</f:facet>
+                                #{mcda.totalAlt2}
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Alt 3</f:facet>
+                                #{mcda.totalAlt3}
+                        </p:column>
+                    </p:dataTable>
+
+
+                </b:tab>
+
+            </b:tabView>
+        </h:form>
+    </b:modal>
+
+</ui:fragment>

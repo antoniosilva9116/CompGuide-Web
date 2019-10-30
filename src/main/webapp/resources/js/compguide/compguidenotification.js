@@ -26,8 +26,10 @@ function pushNotifications() {
                     PF('pushNotifications').renderMessage({"summary": "Task to Check",
                         "detail": "You must check the Task " +
                                 data[i].eventID.scheduleTaskID.taskIdentifier +
-                                " which started at " + new Date(moment((data[i].eventID.startDate).split("+")[0], "YYYYMMDDhhmmss").format()).toDateString() +
-                                " at " + new Date(moment((data[i].eventID.startDate).split("+")[0], "YYYYMMDDhhmmss").format()).toTimeString(),
+//                                " which started at " + new Date(moment((data[i].eventID.startDate).split("+")[0], "YYYYMMDDhhmmss").format()).toDateString() +
+//                                " at " + new Date(moment((data[i].eventID.startDate).split("+")[0], "YYYYMMDDhhmmss").format()).toTimeString(),
+                                " which started at " + new Date(moment((data[i].eventID.startDate),  "x").format()).toDateString() +
+                                " at " + new Date(moment((data[i].eventID.startDate), "x").format()).toTimeString(),
                         "severity": "info"});
                 }
             }
@@ -436,7 +438,8 @@ function htmlNotificationContainer(json)
                     '<b>' + json[i].eventID.scheduleTaskID.taskIdentifier + '</b>' + ' must be finished' +
                     '<div class="noti_sttime">' +
                     '<span class="timeago" title=' +
-                    new Date(moment((json[i].eventID.endDate).split("+")[0], "YYYYMMDDhhmmss")).toISOString() + '> </span>' +
+//                    new Date(moment((json[i].eventID.endDate).split("+")[0], "YYYYMMDDhhmmss")).toISOString() + '> </span>' +
+                    new Date(moment((json[i].eventID.endDate), "x").format()) + '> </span>' +
                     '</div>' +
                     '</div>' +
                     '</div>' +

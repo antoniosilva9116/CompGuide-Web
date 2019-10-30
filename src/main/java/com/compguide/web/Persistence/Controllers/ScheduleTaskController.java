@@ -976,27 +976,24 @@ public class ScheduleTaskController implements Serializable {
     public void showTask(SelectEvent selectEvent) {
 
         ScheduleEvent event = (ScheduleEvent) selectEvent.getObject();
-        List<Event> events = getEventFacade().findAll();
+
+        selectedEvent = getEventFacade().find((Integer) event.getData());
+        selected = selectedEvent.getScheduleTaskID();
+        
 
         if (selected != null) {
             processedTask = callServiceLastTask(selected.getGuideExecID());
         }
 
-        for (Event eventSchedule : events) {
-            if (Objects.equals(eventSchedule.getEventID(), (Integer) event.getData())) {
-                selected = eventSchedule.getScheduleTaskID();
-                selectedEvent = eventSchedule;
-                getSelectedDate().setDate(selectedEvent.getEndDate());
-                processedTask = callServiceLastTask(selected.getGuideExecID());
-                System.out.println(processedTask.toJson());
-                FacesContext.getCurrentInstance().
-                        getExternalContext().getSessionMap().put("guideexec", selected.getGuideExecID());
+        getSelectedDate().setDate(selectedEvent.getEndDate());
+        
+        System.out.println(processedTask.toJson().toString());
+        
+        FacesContext.getCurrentInstance().
+                getExternalContext().getSessionMap().put("guideexec", selected.getGuideExecID());
 
-                FacesContext.getCurrentInstance().
-                        getExternalContext().getSessionMap().put("selectedScheduleTask", selected);
-                break;
-            }
-        }
+        FacesContext.getCurrentInstance().
+                getExternalContext().getSessionMap().put("selectedScheduleTask", selected);
 
     }
 
@@ -1279,7 +1276,7 @@ public class ScheduleTaskController implements Serializable {
         ProcessedTask procTask = new ProcessedTask();
 
         procTask = ServiceRequest.requestGetLastTask(header, guideExecID.getIdguideexec().toString());
-        
+
         System.out.println(procTask.toJson());
         return procTask;
     }
@@ -1407,6 +1404,9 @@ public class ScheduleTaskController implements Serializable {
     }
 
     public boolean isAction() {
+
+        System.out.println("Size of " + getProcessedTask().getTasks().size());
+
         if (getProcessedTask().getTasks().size() > 0) {
             if (containsClass(processedTask, "Action")) {
                 return true;
@@ -1643,7 +1643,7 @@ public class ScheduleTaskController implements Serializable {
         }
     }
 
-    private void findRecommendationInteractions(List<ScheduleTask> scheduleTasksST) {
+    public void findRecommendationInteractions(List<ScheduleTask> scheduleTasksST) {
 
         List<ScheduleTask> scheduleTasksND = new ArrayList<>(scheduleTasksST);
 
@@ -1805,6 +1805,7 @@ public class ScheduleTaskController implements Serializable {
 
         }
         return similarmedications;
+
     }
 
     @FacesConverter(forClass = ScheduleTask.class)

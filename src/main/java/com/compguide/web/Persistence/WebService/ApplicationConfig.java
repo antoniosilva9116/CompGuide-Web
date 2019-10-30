@@ -62,6 +62,22 @@ public class ApplicationConfig extends Application {
         resources.add(com.compguide.web.Persistence.WebService.TemporalUnitFacadeREST.class);
         resources.add(com.compguide.web.Persistence.WebService.UserFacadeREST.class);
         resources.add(com.compguide.web.Persistence.WebService.WaitingTimeFacadeREST.class);
+        resources.add(org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider.class);
+        resources.add(org.codehaus.jackson.jaxrs.JacksonJsonProvider.class);
+        resources.add(org.codehaus.jackson.jaxrs.JsonMappingExceptionMapper.class);
+        resources.add(org.codehaus.jackson.jaxrs.JsonParseExceptionMapper.class);
+        resources.add(org.eclipse.persistence.jpa.rs.exceptions.JPARSExceptionMapper.class);
+        resources.add(org.eclipse.persistence.jpa.rs.resources.EntityResource.class);
+        resources.add(org.eclipse.persistence.jpa.rs.resources.MetadataResource.class);
+        resources.add(org.eclipse.persistence.jpa.rs.resources.PersistenceResource.class);
+        resources.add(org.eclipse.persistence.jpa.rs.resources.PersistenceUnitResource.class);
+        resources.add(org.eclipse.persistence.jpa.rs.resources.QueryResource.class);
+        resources.add(org.eclipse.persistence.jpa.rs.resources.SingleResultQueryResource.class);
+        resources.add(org.eclipse.persistence.jpa.rs.resources.unversioned.EntityResource.class);
+        resources.add(org.eclipse.persistence.jpa.rs.resources.unversioned.PersistenceResource.class);
+        resources.add(org.eclipse.persistence.jpa.rs.resources.unversioned.PersistenceUnitResource.class);
+        resources.add(org.eclipse.persistence.jpa.rs.resources.unversioned.QueryResource.class);
+        resources.add(org.eclipse.persistence.jpa.rs.resources.unversioned.SingleResultQueryResource.class);
     }
     
 }

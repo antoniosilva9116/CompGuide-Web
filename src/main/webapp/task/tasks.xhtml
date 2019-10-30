@@ -5,34 +5,176 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">
+      xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/profiletemplate.xhtml">
         <ui:define name="title"> 
             <h:outputText value="Clinical Tasks" /> 
         </ui:define>
-        <ui:define name="resourcefiles">
-            <link type="text/css" rel="stylesheet" href="#{request.contextPath}/javax.faces.resource/theme.css.xhtml?ln=primefaces-bootstrap"/>
 
-            <h:outputScript name="js/bootstrap/bootstrap.min.js" />
+        <ui:define name="beforestylesheets">
+            <h:outputStylesheet name="css/vendors/slider.css"/>
+        </ui:define>
+        <ui:define name="afterjavascripts">
+
             <h:outputScript name="js/jquery/jquery.slimscroll.min.js"/>
             <h:outputScript name="js/compguide/compguide.alert.js"/>
             <h:outputScript name="js/jquery/jquery.timeago.js"/>
             <h:outputScript name="js/jquery/jquery.livequery.js"/>
             <h:outputScript name="js/jquery/jquery.countdown.js"/>
             <h:outputScript name="js/jquery/jquery.tipsy.js"/>
+            <h:outputScript name="js/bootstrap/bootstrap-slider.js" />
+
+
             <script>
+
+
+                function initSliderRange(element, pre, app, min, max, step, val, tooltip) {
+                    element.slider({
+                        range: true,
+                        min: min,
+                        max: max,
+                        value: val,
+                        step: step,
+                        tooltip: tooltip,
+                    })
+                            .on('slide', function (ev) {
+                                $(this).parent().parent().find('.input_range.min').val(ev.value[0]);
+                                $(this).parent().parent().find('.span_range.min').html(pre + ev.value[0] + app);
+
+                                $(this).parent().parent().find('.input_range.max').val(ev.value[1]);
+                                $(this).parent().parent().find('.span_range.max').html(pre + ev.value[1] + app);
+                            });
+                }
+
+
+
                 $(document).ready(function ()
                 {
+                    $('.disabled a').removeAttr('data-toggle');
+                    $('[id$=bt1]').removeClass('ui-button');
+                    $('[id$=bt1]').removeClass('ui-widget');
+                    $('[id$=bt1]').removeClass('ui-state-default');
+                    $('[id$=bt1]').removeClass('ui-corner-all');
+                    $('[id$=bt1]').removeClass('ui-button-text-only');
+
+                    $('[id$=bt2]').removeClass('ui-button');
+                    $('[id$=bt2]').removeClass('ui-widget');
+                    $('[id$=bt2]').removeClass('ui-state-default');
+                    $('[id$=bt2]').removeClass('ui-corner-all');
+                    $('[id$=bt2]').removeClass('ui-button-text-only');
+
+                    $('[id$=bt3]').removeClass('ui-button');
+                    $('[id$=bt3]').removeClass('ui-widget');
+                    $('[id$=bt3]').removeClass('ui-state-default');
+                    $('[id$=bt3]').removeClass('ui-corner-all');
+                    $('[id$=bt3]').removeClass('ui-button-text-only');
+
+                    $('[id$=bt4]').removeClass('ui-button');
+                    $('[id$=bt4]').removeClass('ui-widget');
+                    $('[id$=bt4]').removeClass('ui-state-default');
+                    $('[id$=bt4]').removeClass('ui-corner-all');
+                    $('[id$=bt4]').removeClass('ui-button-text-only');
+
+                    $('[id$=bt5]').removeClass('ui-button');
+                    $('[id$=bt5]').removeClass('ui-widget');
+                    $('[id$=bt5]').removeClass('ui-state-default');
+                    $('[id$=bt5]').removeClass('ui-corner-all');
+                    $('[id$=bt5]').removeClass('ui-button-text-only');
+
+                    //input labels
+
+                    $('[id$=choose_ca1]').removeClass('ui-inputfield');
+                    $('[id$=choose_ca1]').removeClass('ui-inputtext');
+                    $('[id$=choose_ca1]').removeClass('ui-widget');
+                    $('[id$=choose_ca1]').removeClass('ui-state-default');
+                    $('[id$=choose_ca1]').removeClass('ui-corner-all');
+
+
+                    $('[id$=choose_ca2]').removeClass('ui-inputfield');
+                    $('[id$=choose_ca2]').removeClass('ui-inputtext');
+                    $('[id$=choose_ca2]').removeClass('ui-widget');
+                    $('[id$=choose_ca2]').removeClass('ui-state-default');
+                    $('[id$=choose_ca2]').removeClass('ui-corner-all');
+
+                    $('[id$=choose_ca3]').removeClass('ui-inputfield');
+                    $('[id$=choose_ca3]').removeClass('ui-inputtext');
+                    $('[id$=choose_ca3]').removeClass('ui-widget');
+                    $('[id$=choose_ca3]').removeClass('ui-state-default');
+                    $('[id$=choose_ca3]').removeClass('ui-corner-all');
+
+                    $('[id$=choose_cb1]').removeClass('ui-inputfield');
+                    $('[id$=choose_cb1]').removeClass('ui-inputtext');
+                    $('[id$=choose_cb1]').removeClass('ui-widget');
+                    $('[id$=choose_cb1]').removeClass('ui-state-default');
+                    $('[id$=choose_cb1]').removeClass('ui-corner-all');
+
+                    $('[id$=choose_cb2]').removeClass('ui-inputfield');
+                    $('[id$=choose_cb2]').removeClass('ui-inputtext');
+                    $('[id$=choose_cb2]').removeClass('ui-widget');
+                    $('[id$=choose_cb2]').removeClass('ui-state-default');
+                    $('[id$=choose_cb2]').removeClass('ui-corner-all');
+
+                    $('[id$=choose_cb3]').removeClass('ui-inputfield');
+                    $('[id$=choose_cb3]').removeClass('ui-inputtext');
+                    $('[id$=choose_cb3]').removeClass('ui-widget');
+                    $('[id$=choose_cb3]').removeClass('ui-state-default');
+                    $('[id$=choose_cb3]').removeClass('ui-corner-all');
+
+                    $('[id$=choose_cc1]').removeClass('ui-inputfield');
+                    $('[id$=choose_cc1]').removeClass('ui-inputtext');
+                    $('[id$=choose_cc1]').removeClass('ui-widget');
+                    $('[id$=choose_cc1]').removeClass('ui-state-default');
+                    $('[id$=choose_cc1]').removeClass('ui-corner-all');
+
+                    $('[id$=choose_cc2]').removeClass('ui-inputfield');
+                    $('[id$=choose_cc2]').removeClass('ui-inputtext');
+                    $('[id$=choose_cc2]').removeClass('ui-widget');
+                    $('[id$=choose_cc2]').removeClass('ui-state-default');
+                    $('[id$=choose_cc2]').removeClass('ui-corner-all');
+
+                    $('[id$=choose_cc3]').removeClass('ui-inputfield');
+                    $('[id$=choose_cc3]').removeClass('ui-inputtext');
+                    $('[id$=choose_cc3]').removeClass('ui-widget');
+                    $('[id$=choose_cc3]').removeClass('ui-state-default');
+                    $('[id$=choose_cc3]').removeClass('ui-corner-all');
+
+                    $('[id$=choose_ca1]').addClass('form-control');
+                    $('[id$=choose_ca2]').addClass('form-control');
+                    $('[id$=choose_ca3]').addClass('form-control');
+
+                    $('[id$=choose_cb1]').addClass('form-control');
+                    $('[id$=choose_cb2]').addClass('form-control');
+                    $('[id$=choose_cb3]').addClass('form-control');
+
+                    $('[id$=choose_cc1]').addClass('form-control');
+                    $('[id$=choose_cc2]').addClass('form-control');
+                    $('[id$=choose_ccc3]').addClass('form-control');
+
+
+
                     $('.dropdown').unbind('click');
                     $('.dropdown-toggle').dropdown();
+                    if ($('#slider-criteria').length) {
+                        initSliderRange(
+                                $('#slider-criteria .slider'), //element
+                                ' ', //Preppend
+                                '', //Append
+                                0, //Min
+                                100, //Max
+                                1, //Step
+                                [30, 80], //Value
+                                'hide'						//Tooltip
+                                );
+                    }
                 });
             </script>
+            <h:outputScript name="js/jquery/migrate/jquery-3.0.0.js"/>
             <h:outputScript name="js/jquery/jquery.dataTables.js"/>
             <h:outputScript name="js/datatables/dataTables.responsive.js"/>
             <h:outputScript name="js/compguide/guidelinetabledetails.js" />
             <h:outputScript name="js/datatables/dataTables.bootstrap.js" />
             <h:outputScript name="js/compguide/compguidenotification.js"/>
+            <h:outputScript name="js/compguide/mcda.validator.js"/>
 
         </ui:define>
         <ui:define name="events">
@@ -53,21 +195,22 @@
                                 <h4>Timeline</h4>
                                 <span>Timeline Clinical Task</span>
                                 <p>
-                                    <pe:timeline value="#{taskTimeLineController.model}"
-                                                 zoomable="true"  
-                                                 moveable="true"  
-                                                 stackEvents="false"  
-                                                 axisOnTop="true"               
-                                                 eventStyle="box"  
-                                                 minHeight="200"
-                                                 widgetVar="timeLineTaskEvents"
-                                                 showCurrentTime="true"
-                                                 showNavigation="true">
+
+                                    <p:timeline value="#{taskTimeLineController.model}"
+                                                zoomable="true"  
+                                                moveable="true"  
+                                                stackEvents="false"  
+                                                axisOnTop="true"               
+                                                eventStyle="box"  
+                                                minHeight="200"
+                                                widgetVar="timeLineTaskEvents"
+                                                showCurrentTime="true"
+                                                showNavigation="true">
                                         <p:ajax event="select" listener="#{taskTimeLineController.onSelect}"
                                                 update=":timelinecontent :buttonstimeline"
                                                 oncomplete="$('.modalPseudoClass1').modal('show');change();startCountDown('timeline');"/>
                                         <!-- update=":timelinecontent :buttonstimeline" -->
-                                    </pe:timeline>
+                                    </p:timeline>
                                 </p>
                             </div>
 
@@ -113,6 +256,7 @@
         <ui:define name="beforebody">
             <ui:include src="/modal/modalschedule.xhtml" />
             <ui:include src="/modal/modaltimeline.xhtml" />
+            <ui:include src="/mcda/Create.xhtml" />
         </ui:define>
     </ui:composition>
 </html>

@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 var webServicePath = "http://localhost:8081/CompGuide/webresources/";
+var tableActions = null;
+
 /* Formatting function for row details - modify as you need */
 function format(data) {
     var desc = +(data.description === null) ? "There is no information" : data.description;
@@ -94,30 +96,73 @@ function updateTable() {
 }
 
 function initTableAction() {
-    var tableaction = $('#actions').DataTable({
-        "ordering": false,
-        "info": false,
-        "paging": false
-    });
-    $('.check').on('click', function () {
 
-    });
-    // Add event listener for opening and closing details
-    $('#actions tbody').on('click', 'td.details-control', function () {
-        var tr = $(this).closest('tr');
-        var row = tableaction.row(tr);
-        if (row.child.isShown()) {
-            // This row is already open - close it
-            row.child.hide();
-            tr.removeClass('shown');
-        } else {
-            var id = tr.attr('id');
-            var dataaction = $('#actioncontent' + id).clone();
-            dataaction.css('display', '');
-            row.child(dataaction).show();
-            tr.addClass('shown');
-        }
-    });
+
+    if (!$.fn.dataTable.isDataTable('#actions')) {
+        tableaction = $('#actions').DataTable({
+            "ordering": false,
+            "info": false,
+            "paging": false
+        });
+
+        $('.check').on('click', function () {
+
+        });
+
+        // Add event listener for opening and closing details
+        $('#actions tbody').on('click', 'td.details-control', function () {
+
+            var tr = $(this).closest('tr');
+            var row = tableaction.row(tr);
+
+            if (row.child.isShown()) {
+                // This row is already open - close it
+                row.child.hide();
+                tr.removeClass('shown');
+            } else {
+                var id = tr.attr('id');
+                var dataaction = $('#actioncontent' + id).clone();
+                dataaction.css('display', '');
+                row.child(dataaction).show();
+                tr.addClass('shown');
+            }
+        });
+    } else {
+
+        tableaction.destroy();
+
+        tableaction = $('#actions').DataTable({
+            "ordering": false,
+            "info": false,
+            "paging": false
+        });
+
+        $('.check').on('click', function () {
+
+        });
+
+        // Add event listener for opening and closing details
+        $('#actions tbody').on('click', 'td.details-control', function () {
+
+            var tr = $(this).closest('tr');
+            var row = tableaction.row(tr);
+
+            if (row.child.isShown()) {
+                // This row is already open - close it
+                row.child.hide();
+                tr.removeClass('shown');
+            } else {
+                var id = tr.attr('id');
+                var dataaction = $('#actioncontent' + id).clone();
+                dataaction.css('display', '');
+                row.child(dataaction).show();
+                tr.addClass('shown');
+            }
+        });
+    }
+
+
+
 }
 
 $(document).ready(function () {
